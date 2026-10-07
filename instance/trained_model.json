@@ -1,0 +1,301 @@
+{
+  "model": "Two-Stage GNN-DRL Educational Scheduler",
+  "trained_at": "2026-10-07T06:16:34.214090",
+  "episodes": 250,
+  "learning_rate": 0.001,
+  "gamma": 0.95,
+  "evaluation": {
+    "fcfs": {
+      "schedule": [
+        {
+          "task": "T1",
+          "resource_id": 1,
+          "resource": "Edge-S",
+          "start": 0.0,
+          "finish": 15.0,
+          "duration": 15.0,
+          "deadline": 45,
+          "met_deadline": true
+        },
+        {
+          "task": "T2",
+          "resource_id": 2,
+          "resource": "Cloud-M",
+          "start": 15.0,
+          "finish": 23.8,
+          "duration": 8.8,
+          "deadline": 70,
+          "met_deadline": true
+        },
+        {
+          "task": "T3",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 15.0,
+          "finish": 17.917,
+          "duration": 2.917,
+          "deadline": 65,
+          "met_deadline": true
+        },
+        {
+          "task": "T5",
+          "resource_id": 5,
+          "resource": "GPU-X",
+          "start": 17.917,
+          "finish": 22.717,
+          "duration": 4.8,
+          "deadline": 100,
+          "met_deadline": true
+        },
+        {
+          "task": "T4",
+          "resource_id": 4,
+          "resource": "Eco-Node",
+          "start": 23.8,
+          "finish": 36.181,
+          "duration": 12.381,
+          "deadline": 105,
+          "met_deadline": true
+        },
+        {
+          "task": "T6",
+          "resource_id": 1,
+          "resource": "Edge-S",
+          "start": 36.181,
+          "finish": 86.181,
+          "duration": 50.0,
+          "deadline": 145,
+          "met_deadline": true
+        }
+      ],
+      "metrics": {
+        "makespan": 86.18,
+        "total_cost": 21.41,
+        "energy": 70.28,
+        "utilization": 21.79,
+        "deadline_violations": 0,
+        "throughput": 0.07,
+        "scheduling_time": 0.587
+      }
+    },
+    "min_min": {
+      "schedule": [
+        {
+          "task": "T1",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 0.0,
+          "finish": 3.75,
+          "duration": 3.75,
+          "deadline": 45,
+          "met_deadline": true
+        },
+        {
+          "task": "T2",
+          "resource_id": 2,
+          "resource": "Cloud-M",
+          "start": 3.75,
+          "finish": 12.55,
+          "duration": 8.8,
+          "deadline": 70,
+          "met_deadline": true
+        },
+        {
+          "task": "T3",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 3.75,
+          "finish": 6.667,
+          "duration": 2.917,
+          "deadline": 65,
+          "met_deadline": true
+        },
+        {
+          "task": "T5",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 6.667,
+          "finish": 9.167,
+          "duration": 2.5,
+          "deadline": 100,
+          "met_deadline": true
+        },
+        {
+          "task": "T4",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 12.55,
+          "finish": 17.967,
+          "duration": 5.417,
+          "deadline": 105,
+          "met_deadline": true
+        },
+        {
+          "task": "T6",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 17.967,
+          "finish": 22.133,
+          "duration": 4.167,
+          "deadline": 145,
+          "met_deadline": true
+        }
+      ],
+      "metrics": {
+        "makespan": 22.13,
+        "total_cost": 14.62,
+        "energy": 38.3,
+        "utilization": 62.24,
+        "deadline_violations": 0,
+        "throughput": 0.271,
+        "scheduling_time": 0.513
+      }
+    },
+    "heft": {
+      "schedule": [
+        {
+          "task": "T1",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 0.0,
+          "finish": 3.75,
+          "duration": 3.75,
+          "deadline": 45,
+          "met_deadline": true
+        },
+        {
+          "task": "T2",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 3.75,
+          "finish": 8.333,
+          "duration": 4.583,
+          "deadline": 70,
+          "met_deadline": true
+        },
+        {
+          "task": "T3",
+          "resource_id": 2,
+          "resource": "Cloud-M",
+          "start": 3.75,
+          "finish": 9.35,
+          "duration": 5.6,
+          "deadline": 65,
+          "met_deadline": true
+        },
+        {
+          "task": "T4",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 9.35,
+          "finish": 14.767,
+          "duration": 5.417,
+          "deadline": 105,
+          "met_deadline": true
+        },
+        {
+          "task": "T5",
+          "resource_id": 2,
+          "resource": "Cloud-M",
+          "start": 9.35,
+          "finish": 14.15,
+          "duration": 4.8,
+          "deadline": 100,
+          "met_deadline": true
+        },
+        {
+          "task": "T6",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 14.767,
+          "finish": 18.933,
+          "duration": 4.167,
+          "deadline": 145,
+          "met_deadline": true
+        }
+      ],
+      "metrics": {
+        "makespan": 18.93,
+        "total_cost": 14.64,
+        "energy": 38.69,
+        "utilization": 74.78,
+        "deadline_violations": 0,
+        "throughput": 0.317,
+        "scheduling_time": 0.256
+      }
+    },
+    "proposed": {
+      "schedule": [
+        {
+          "task": "T1",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 0.0,
+          "finish": 3.75,
+          "duration": 3.75,
+          "deadline": 45,
+          "met_deadline": true
+        },
+        {
+          "task": "T2",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 3.75,
+          "finish": 8.333,
+          "duration": 4.583,
+          "deadline": 70,
+          "met_deadline": true
+        },
+        {
+          "task": "T3",
+          "resource_id": 5,
+          "resource": "GPU-X",
+          "start": 3.75,
+          "finish": 9.35,
+          "duration": 5.6,
+          "deadline": 65,
+          "met_deadline": true
+        },
+        {
+          "task": "T4",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 9.35,
+          "finish": 14.767,
+          "duration": 5.417,
+          "deadline": 105,
+          "met_deadline": true
+        },
+        {
+          "task": "T5",
+          "resource_id": 4,
+          "resource": "Eco-Node",
+          "start": 9.35,
+          "finish": 15.064,
+          "duration": 5.714,
+          "deadline": 100,
+          "met_deadline": true
+        },
+        {
+          "task": "T6",
+          "resource_id": 3,
+          "resource": "Compute-L",
+          "start": 15.064,
+          "finish": 19.231,
+          "duration": 4.167,
+          "deadline": 145,
+          "met_deadline": true
+        }
+      ],
+      "metrics": {
+        "makespan": 19.23,
+        "total_cost": 14.39,
+        "energy": 35.57,
+        "utilization": 50.67,
+        "deadline_violations": 0,
+        "throughput": 0.312,
+        "scheduling_time": 0.309
+      }
+    }
+  }
+}

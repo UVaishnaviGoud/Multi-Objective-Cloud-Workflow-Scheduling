@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — CloudFlow AI{% endblock %}
+{% block page_title %}User Dashboard{% endblock %}
+{% block content %}
+<section class="welcome-card reveal"><div><small>GOOD TO SEE YOU, {{ session.name|upper }}</small><h1>Ready to optimize your next workflow?</h1><p>Upload a DAG, select your objectives, and let CloudFlow find an intelligent schedule.</p></div><a class="btn btn-light" href="{{ url_for('create_workflow') }}">＋ New workflow</a></section>
+<div class="stat-grid">
+  <article class="stat-card"><span class="stat-icon purple">⌁</span><div><small>TOTAL WORKFLOWS</small><b>{{ workflows|length }}</b><em>All submissions</em></div></article>
+  <article class="stat-card"><span class="stat-icon blue">✓</span><div><small>COMPLETED RUNS</small><b>{{ runs|length }}</b><em>Scheduling results</em></div></article>
+  <article class="stat-card"><span class="stat-icon orange">◷</span><div><small>LATEST MAKESPAN</small><b>{{ latest.algorithms.proposed.metrics.makespan if latest else '—' }}</b><em>Time units</em></div></article>
+  <article class="stat-card"><span class="stat-icon green">↗</span><div><small>LATEST SAVING</small><b>{{ latest.improvement.makespan if latest else '—' }}{% if latest %}%{% endif %}</b><em>vs. FCFS baseline</em></div></article>
+</div>
+<section class="panel reveal"><div class="panel-head"><div><small>RECENT WORK</small><h3>Your workflows</h3></div><a class="text-link" href="{{ url_for('create_workflow') }}">Create workflow →</a></div>
+  {% if workflows %}<div class="workflow-cards">{% for wf in workflows[:6] %}<a class="workflow-card" href="{{ url_for('workflow_detail', workflow_id=wf.id) }}"><div class="wf-top"><span class="wf-icon">⌁</span><span class="badge">{{ wf.objective|title }}</span></div><h4>{{ wf.name }}</h4><p>{{ wf.tasks|length }} tasks · Deadline {{ wf.deadline }}</p><div class="wf-foot"><span>{{ wf.created_at.strftime('%d %b %Y') }}</span><b>Open →</b></div></a>{% endfor %}</div>
+  {% else %}<div class="empty-state"><span>⌁</span><h3>No workflows yet</h3><p>Create your first workflow manually or upload a CSV dataset.</p><a class="btn btn-primary" href="{{ url_for('create_workflow') }}">Create workflow</a></div>{% endif %}
+</section>
+{% endblock %}

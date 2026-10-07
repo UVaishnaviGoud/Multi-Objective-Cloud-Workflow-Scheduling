@@ -1,0 +1,8 @@
+id,duration,cpu,memory,deadline,dependencies
+T1,18,2,2,45,
+T2,22,4,4,70,T1
+T3,14,2,3,65,T1
+T4,26,4,6,105,T2;T3
+T5,12,2,2,100,T3
+T6,20,4,5,145,T4;T5
+

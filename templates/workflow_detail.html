@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ workflow.name }} — CloudFlow AI{% endblock %}
+{% block page_title %}Workflow Details{% endblock %}
+{% block content %}
+<section class="detail-hero reveal"><div><div class="eyebrow"><i></i> READY FOR OPTIMIZATION</div><h1>{{ workflow.name }}</h1><p>{{ workflow.description or 'Cloud workflow scheduling request' }}</p><div class="meta-row"><span>{{ workflow.tasks|length }} tasks</span><span>Deadline {{ workflow.deadline }}</span><span>Budget {{ workflow.budget }}</span><span>{{ workflow.objective|title }} objective</span></div></div><form method="post" action="{{ url_for('schedule_workflow', workflow_id=workflow.id) }}"><button class="btn btn-primary btn-lg" type="submit">✦ Run intelligent scheduling</button></form></section>
+<div class="two-col detail-grid">
+  <section class="panel"><div class="panel-head"><div><small>WORKFLOW DAG</small><h3>Dependency map</h3></div><span class="badge">Validated DAG</span></div><div id="dagCanvas" class="dag-canvas" data-tasks='{{ workflow.tasks|tojson }}'></div></section>
+  <section class="panel"><div class="panel-head"><div><small>OPTIMIZATION PROFILE</small><h3>Selected objectives</h3></div></div><div class="objective-list"><div><span>Execution time</span><i style="--w:{{ '55%' if workflow.objective == 'time' else '30%' }}"></i></div><div><span>Cloud cost</span><i style="--w:{{ '55%' if workflow.objective == 'cost' else '25%' }}"></i></div><div><span>Energy use</span><i style="--w:{{ '55%' if workflow.objective == 'energy' else '20%' }}"></i></div><div><span>Load balance</span><i style="--w:25%"></i></div></div><div class="info-callout"><b>How it works</b><p>Graph context prioritizes critical tasks, while stage-one policy evaluates resource actions using your objective weights.</p></div></section>
+</div>
+<section class="panel"><div class="panel-head"><div><small>TASK INVENTORY</small><h3>Input tasks</h3></div></div><div class="table-wrap"><table><thead><tr><th>Task</th><th>Duration</th><th>CPU</th><th>Memory</th><th>Deadline</th><th>Dependencies</th></tr></thead><tbody>{% for task in workflow.tasks %}<tr><td><b>{{ task.id }}</b></td><td>{{ task.duration }}</td><td>{{ task.cpu }} cores</td><td>{{ task.memory }} GB</td><td>{{ task.deadline }}</td><td>{% if task.dependencies %}{% for d in task.dependencies %}<span class="mini-tag">{{ d }}</span>{% endfor %}{% else %}<span class="muted">Entry task</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}
+

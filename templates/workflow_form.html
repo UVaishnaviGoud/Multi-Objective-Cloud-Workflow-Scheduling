@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}New Workflow — CloudFlow AI{% endblock %}
+{% block page_title %}Create Workflow{% endblock %}
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="workflow-form">
+  <section class="panel reveal"><div class="step-head"><span>01</span><div><small>WORKFLOW DETAILS</small><h3>Define the scheduling request</h3></div></div>
+    <div class="form-grid"><label>Workflow name<input name="name" required placeholder="e.g. Scientific Montage Pipeline"></label><label>Optimization focus<select name="objective"><option value="balanced">Balanced objectives</option><option value="time">Minimum execution time</option><option value="cost">Minimum cloud cost</option><option value="energy">Minimum energy</option></select></label><label>Global deadline<input type="number" name="deadline" value="150" min="1" step="0.1" required></label><label>Maximum budget<input type="number" name="budget" value="100" min="1" step="0.1" required></label><label class="full">Description<textarea name="description" rows="2" placeholder="What does this workflow process?"></textarea></label></div>
+  </section>
+  <section class="panel reveal"><div class="step-head"><span>02</span><div><small>TASK DATA</small><h3>Add workflow tasks and dependencies</h3></div></div>
+    <div class="input-tabs"><button type="button" class="tab-btn active" data-target="manualPanel">Manual CSV entry</button><button type="button" class="tab-btn" data-target="uploadPanel">Upload CSV file</button></div>
+    <div id="manualPanel" class="tab-panel active"><div class="format-tip"><b>Required format</b><code>id,duration,cpu,memory,deadline,dependencies</code><span>Use semicolons for multiple dependencies.</span></div><textarea class="code-input" name="tasks_csv" rows="11">id,duration,cpu,memory,deadline,dependencies
+T1,18,2,2,45,
+T2,22,4,4,70,T1
+T3,14,2,3,65,T1
+T4,26,4,6,105,T2;T3
+T5,12,2,2,100,T3
+T6,20,4,5,145,T4;T5</textarea></div>
+    <div id="uploadPanel" class="tab-panel"><label class="upload-zone"><input type="file" name="workflow_file" accept=".csv"><span class="upload-icon">⇧</span><b>Drop a workflow CSV here</b><small>or click to browse · Maximum 4 MB</small><em id="fileName">No file selected</em></label><a class="text-link" href="{{ url_for('static', filename='data/sample_workflow.csv') }}" download>Download sample CSV →</a></div>
+  </section>
+  <div class="form-actions"><a class="btn btn-ghost" href="{{ url_for('user_dashboard') }}">Cancel</a><button class="btn btn-primary btn-lg" type="submit">Create workflow <span>→</span></button></div>
+</form>
+{% endblock %}
+

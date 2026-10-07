@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CloudFlow AI multi-objective cloud workflow scheduling platform">
+  <title>{% block title %}CloudFlow AI{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body class="{% if session.get('user_id') %}app-body{% else %}public-body{% endif %}">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  {% if session.get('user_id') %}
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="{{ url_for('admin_dashboard' if session.get('role') == 'admin' else 'user_dashboard') }}">
+      <span class="brand-mark">C</span><span>CloudFlow <b>AI</b></span>
+    </a>
+    <div class="role-pill">{{ session.get('role', 'user')|upper }} CONSOLE</div>
+    <nav>
+      {% if session.get('role') == 'admin' %}
+        <a class="{{ 'active' if request.endpoint == 'admin_dashboard' }}" href="{{ url_for('admin_dashboard') }}"><span>◈</span> Overview</a>
+        <a class="{{ 'active' if request.endpoint == 'resources' }}" href="{{ url_for('resources') }}"><span>▦</span> Cloud Resources</a>
+        <a class="{{ 'active' if request.endpoint == 'training' }}" href="{{ url_for('training') }}"><span>✦</span> Model Training</a>
+        <a class="{{ 'active' if request.endpoint == 'users' }}" href="{{ url_for('users') }}"><span>◉</span> Registered Users</a>
+      {% else %}
+        <a class="{{ 'active' if request.endpoint == 'user_dashboard' }}" href="{{ url_for('user_dashboard') }}"><span>◈</span> Dashboard</a>
+        <a class="{{ 'active' if request.endpoint == 'create_workflow' }}" href="{{ url_for('create_workflow') }}"><span>＋</span> New Workflow</a>
+      {% endif %}
+      <a class="{{ 'active' if request.endpoint == 'history' }}" href="{{ url_for('history') }}"><span>◷</span> Scheduling History</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="mini-avatar">{{ session.get('name','U')[0] }}</div>
+      <div><strong>{{ session.get('name') }}</strong><small>{{ session.get('role')|title }}</small></div>
+      <a href="{{ url_for('logout') }}" title="Logout">↗</a>
+    </div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div><small>INTELLIGENT CLOUD ORCHESTRATION</small><h2>{% block page_title %}Dashboard{% endblock %}</h2></div>
+      <div class="status-live"><i></i> System online</div>
+    </header>
+    <main class="content">
+  {% else %}
+    <header class="public-nav">
+      <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">C</span><span>CloudFlow <b>AI</b></span></a>
+      <nav><a href="{{ url_for('index') }}#features">Features</a><a href="{{ url_for('index') }}#architecture">Architecture</a></nav>
+      <div class="nav-actions"><a class="btn btn-ghost" href="{{ url_for('login') }}">Log in</a><a class="btn btn-primary" href="{{ url_for('register') }}">Get started</a></div>
+    </header>
+    <main>
+  {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}<div class="toast-stack">{% for category, message in messages %}<div class="toast {{ category }}"><span>{{ '✓' if category == 'success' else '!' }}</span>{{ message }}<button onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  {% if not session.get('user_id') %}<footer><span>© {{ current_year }} CloudFlow AI</span><span>Two-Stage DRL · Graph Neural Networks · Multi-Objective Optimization</span></footer>{% endif %}
+  {% if session.get('user_id') %}</div>{% endif %}
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+

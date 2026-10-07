@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Create account' if mode == 'register' else 'Welcome back' }} — CloudFlow AI{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <div class="auth-aside">
+    <a class="brand brand-light" href="{{ url_for('index') }}"><span class="brand-mark">C</span><span>CloudFlow <b>AI</b></span></a>
+    <div><div class="eyebrow light"><i></i> CLOUD OPTIMIZATION STUDIO</div><h1>Intelligence for every <span>workflow decision.</span></h1><p>Visualize dependencies, optimize resources and compare scheduling strategies from one unified platform.</p></div>
+    <div class="auth-quote">“Better schedules aren't guessed. They're learned from every task, edge and objective.”</div>
+  </div>
+  <div class="auth-panel">
+    <div class="auth-card reveal">
+      <small class="overline">{{ 'START YOUR JOURNEY' if mode == 'register' else 'WELCOME BACK' }}</small>
+      <h2>{{ 'Create your account' if mode == 'register' else 'Log in to CloudFlow' }}</h2>
+      <p>{{ 'Start optimizing cloud workflows in minutes.' if mode == 'register' else 'Continue to your intelligent scheduling console.' }}</p>
+      <form method="post" class="form-stack">
+        {% if mode == 'register' %}<label>Full name<input name="name" required placeholder="Your name" autocomplete="name"></label>{% endif %}
+        <label>Email address<input type="email" name="email" required placeholder="name@example.com" autocomplete="email"></label>
+        <label>Password<input type="password" name="password" required minlength="6" placeholder="Minimum 6 characters" autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}"></label>
+        <button class="btn btn-primary btn-block" type="submit">{{ 'Create account' if mode == 'register' else 'Log in' }} <span>→</span></button>
+      </form>
+      {% if mode == 'login' %}<div class="demo-credentials"><b>Demo access</b><span>Admin: admin@cloudflow.local / admin123</span><span>User: user@cloudflow.local / user123</span></div>{% endif %}
+      <div class="auth-switch">{{ 'Already registered?' if mode == 'register' else 'New to CloudFlow?' }} <a href="{{ url_for('login' if mode == 'register' else 'register') }}">{{ 'Log in' if mode == 'register' else 'Create an account' }}</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

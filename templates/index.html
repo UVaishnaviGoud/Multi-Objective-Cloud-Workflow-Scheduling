@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}CloudFlow AI — Intelligent Workflow Scheduling{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow"><i></i> NEXT-GENERATION CLOUD INTELLIGENCE</div>
+    <h1>Schedule smarter.<br><span>Optimize everything.</span></h1>
+    <p>Multi-objective cloud workflow scheduling powered by graph intelligence and two-stage deep reinforcement learning—balancing speed, cost, energy, and utilization.</p>
+    <div class="hero-actions"><a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Launch scheduler <span>→</span></a><a class="btn btn-soft btn-lg" href="#architecture">Explore architecture</a></div>
+    <div class="trust-row"><div><b>4</b><small>Scheduling models</small></div><div><b>6+</b><small>Optimization metrics</small></div><div><b>DAG</b><small>Native workflows</small></div></div>
+  </div>
+  <div class="hero-visual reveal delay-1">
+    <div class="orbital-card">
+      <div class="card-head"><span>LIVE SCHEDULING MAP</span><i></i></div>
+      <div class="flow-map">
+        <div class="flow-node n1">T1<small>Input</small></div><div class="flow-node n2">T2<small>CPU</small></div>
+        <div class="flow-node n3">T3<small>Data</small></div><div class="flow-node n4">T4<small>Merge</small></div>
+        <div class="flow-node n5">T5<small>Output</small></div>
+        <svg viewBox="0 0 500 330"><path d="M90 70 C170 70 150 145 230 145"/><path d="M90 70 C170 70 150 255 230 255"/><path d="M270 145 C340 145 330 210 400 210"/><path d="M270 255 C340 255 330 210 400 210"/></svg>
+      </div>
+      <div class="optimizer-strip"><div class="pulse-icon">✦</div><div><small>PROPOSED OPTIMIZER</small><b>GNN + Two-Stage DRL</b></div><span>−28.4% <small>makespan</small></span></div>
+    </div>
+  </div>
+</section>
+<section class="logo-strip"><span>OPTIMIZES</span><b>Execution Time</b><b>Cloud Cost</b><b>Energy</b><b>Utilization</b><b>Deadlines</b></section>
+<section id="features" class="section-wrap">
+  <div class="section-heading"><div><small>ONE ENGINE. MULTIPLE OBJECTIVES.</small><h2>Built for complex cloud decisions</h2></div><p>Every task, dependency, and resource becomes part of a unified intelligent scheduling policy.</p></div>
+  <div class="feature-grid">
+    <article class="feature-card coral"><span>01</span><div class="feature-icon">⌁</div><h3>Graph-aware intelligence</h3><p>Models task dependencies as a DAG and extracts critical paths using GNN-inspired graph features.</p></article>
+    <article class="feature-card violet"><span>02</span><div class="feature-icon">✦</div><h3>Two-stage decisions</h3><p>Stage one selects resources; stage two prioritizes tasks using multi-objective reward signals.</p></article>
+    <article class="feature-card cyan"><span>03</span><div class="feature-icon">◎</div><h3>Explainable comparisons</h3><p>Compare FCFS, Min-Min, HEFT and the proposed scheduler using clear tables and charts.</p></article>
+  </div>
+</section>
+<section id="architecture" class="architecture section-wrap">
+  <div class="section-heading"><div><small>INTELLIGENT PIPELINE</small><h2>From workflow graph to optimized execution</h2></div></div>
+  <div class="pipeline">
+    <div><b>1</b><span>Workflow DAG</span><small>Tasks + dependencies</small></div><i>→</i>
+    <div><b>2</b><span>Graph Encoder</span><small>Context embeddings</small></div><i>→</i>
+    <div><b>3</b><span>Stage 1 DRL</span><small>Resource selection</small></div><i>→</i>
+    <div><b>4</b><span>Stage 2 DRL</span><small>Task ordering</small></div><i>→</i>
+    <div><b>5</b><span>Schedule</span><small>Balanced objectives</small></div>
+  </div>
+</section>
+<section class="cta-band"><div><small>READY TO ORCHESTRATE?</small><h2>Turn every workflow into a smarter schedule.</h2></div><a class="btn btn-light btn-lg" href="{{ url_for('register') }}">Create free account →</a></section>
+{% endblock %}
+

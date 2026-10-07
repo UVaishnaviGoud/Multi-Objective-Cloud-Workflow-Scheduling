@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Users — CloudFlow AI{% endblock %}
+{% block page_title %}Registered Users{% endblock %}
+{% block content %}
+<section class="page-intro"><div><small>PLATFORM ACCOUNTS</small><h1>User management</h1><p>Review registered accounts and their scheduling activity.</p></div></section><section class="panel"><div class="panel-head"><div><small>USER DIRECTORY</small><h3>{{ users|length }} accounts</h3></div></div><div class="table-wrap"><table><thead><tr><th>User</th><th>Email</th><th>Role</th><th>Workflows</th><th>Schedule runs</th><th>Status</th><th>Joined</th></tr></thead><tbody>{% for user in users %}<tr><td><div class="user-cell"><span>{{ user.name[0] }}</span><b>{{ user.name }}</b></div></td><td>{{ user.email }}</td><td><span class="badge">{{ user.role|title }}</span></td><td>{{ user.workflows|length }}</td><td>{{ user.schedule_runs|length }}</td><td><span class="status {{ 'ok' if user.active else 'late' }}">{{ 'Active' if user.active else 'Inactive' }}</span></td><td>{{ user.created_at.strftime('%d %b %Y') }}</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}
+

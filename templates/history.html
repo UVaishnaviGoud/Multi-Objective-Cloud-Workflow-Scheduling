@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}History — CloudFlow AI{% endblock %}
+{% block page_title %}Scheduling History{% endblock %}
+{% block content %}
+<section class="page-intro"><div><small>AUDIT & ANALYSIS</small><h1>Scheduling history</h1><p>Review previous workflow experiments and download comparison results.</p></div></section>
+<section class="panel"><div class="panel-head"><div><small>ALL RUNS</small><h3>{{ runs|length }} scheduling experiments</h3></div></div>{% if runs %}<div class="table-wrap"><table><thead><tr><th>#</th><th>Workflow</th>{% if session.role == 'admin' %}<th>User</th>{% endif %}<th>Tasks</th><th>Best model</th><th>Makespan</th><th>Cost</th><th>Date</th><th></th></tr></thead><tbody>{% for run in runs %}<tr><td class="muted">{{ run.id }}</td><td><b>{{ run.workflow.name }}</b></td>{% if session.role == 'admin' %}<td>{{ run.user.name }}</td>{% endif %}<td>{{ run.workflow.tasks|length }}</td><td><span class="badge success">GNN–DRL</span></td><td>{{ run.result.algorithms.proposed.metrics.makespan }}</td><td>{{ run.result.algorithms.proposed.metrics.total_cost }}</td><td>{{ run.created_at.strftime('%d %b %Y, %H:%M') }}</td><td><a class="row-link" href="{{ url_for('schedule_result', run_id=run.id) }}">View →</a></td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><span>◷</span><h3>No scheduling history</h3><p>Completed workflow runs will appear here.</p></div>{% endif %}</section>
+{% endblock %}
+
